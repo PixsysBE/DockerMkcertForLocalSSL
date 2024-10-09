@@ -1,0 +1,16 @@
+services:
+
+  # Add this container to your docker-compose.yml
+  app.proxy:
+    image: yourapp.proxy # to be renamed
+    container_name: yourapp.proxy.container # to be renamed
+    build: App.Proxy
+    ports:
+      - 443:443
+    # Uncomment the lines marked with [*] if you want to export your rootCA.pem
+    #[*] volumes:
+    #[*]   - ./rootCA:/mnt/rootCA # Volume containing the root certificate
+    #[*] command: > # Copying the root certificate to the mounted folder so it can be accessed in the host
+    #[*]   sh -c "
+    #[*]   cp /etc/nginx/certs/rootCA/rootCA-key.pem /mnt/rootCA/rootCA-key.pem &&
+    #[*]   nginx -g 'daemon off;'"
